@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Home | JSephus</title>
+<meta property="og:title" content="Home" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A portable ES6 class for an attractive SVG loading element." />
+<meta property="og:description" content="A portable ES6 class for an attractive SVG loading element." />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="JSephus" />
+<script type="application/ld+json">
+{"name":"JSephus","description":"A portable ES6 class for an attractive SVG loading element.","author":null,"@type":"WebSite","url":"http://localhost:4000/","publisher":null,"image":null,"headline":"Home","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=033d89fba08c36e417afdac956e58031db9ffb64">
+    <script type="text/javascript" src="https://rawgit.com/vankesteren/JSephus/master/JSephus.js"></script>
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>JSephus</h1>
+        <p>A portable ES6 class for an attractive SVG loading element.</p>
+
+        
+
+        <hr>
+        <p class="view"><a href="."> Home </a></p>
+        <p class="view"><a href="quickstart"> Quick-start guide </a></p>
+        <p class="view"><a href="docpage"> Reference documentation </a></p>
+        <p class="vies"><a href="http://github.com/vankesteren/JSephus/releases/latest"> Download </a></p>
+        <p class="view"><a href="http://github.com/vankesteren/JSephus"> GitHub <small></small></a></p>
+        
+        <hr>
+      </header>
+      <section>
+
+      <h1 id="the-jsephus-loader">The JSephus loader</h1>
+
+<p>Inspired by the <a href="https://www.youtube.com/watch?v=uCsD3ZGzMgE">Josephus problem</a>, the <code class="highlighter-rouge">JSephus</code> loader is a visually attractive way of attending users to progress of a process. It’s a <code class="highlighter-rouge">.js</code> file containing a single <code class="highlighter-rouge">ES6</code> class designed to be simple to use, enabling you to <em>drop in</em> the loader anywhere you have an <code class="highlighter-rouge">SVG</code> element ready.</p>
+
+<pre><code class="language-{javascript}">var jsph = new JSephus("svgElementId", 40);
+jsph.init();
+</code></pre>
+
+<hr />
+
+<div class="btnGroup">
+  <button onclick="j1strt()"> Start </button>
+  <button onclick="j1stop()"> Stop </button>
+  <button onclick="j1rset()"> Reset </button>
+</div>
+
+<div style="max-width:70%;margin-left:auto;margin-right:auto;"> 
+  <svg id="jsph1" viewBox="0 0 512 512"> </svg> 
+</div>
+
+<script type="text/javascript">
+  var j1 = new JSephus("jsph1", 40);
+  j1.init();
+  var j1strt = function() { window.j1.start();  };
+  var j1stop = function() { window.j1.stop() };
+  var j1rset = function() { window.j1.reset() };
+</script>
+
+<hr />
+
+<p>The <code class="highlighter-rouge">JSephus</code> loader is very customisable. Setting some different properties is easy:</p>
+
+<pre><code class="language-{javascript}">jsph.setProperty(["dist", "displayText", 
+                  "radius", "alpha", 
+                  "disappear", "transDist"], 
+                 [90, false, 
+                  30, 0.3, 
+                  false, 90]);
+jsph.init();
+</code></pre>
+
+<p>And the result will look very different:</p>
+
+<hr />
+
+<div class="btnGroup">
+  <button onclick="j2strt()"> Start </button>
+  <button onclick="j2stop()"> Stop </button>
+  <button onclick="j2rset()"> Reset </button>
+</div>
+
+<div style="max-width:70%;margin-left:auto;margin-right:auto;"> 
+  <svg id="jsph2" viewBox="0 0 512 512"> </svg> 
+</div>
+
+<script type="text/javascript">
+  var j2 = new JSephus("jsph2", 40);
+  j2.setProperty(["dist", "displayText", "radius", "alpha", "disappear", "transDist"], 
+                   [90, false, 30, 0.3, false, 90]);
+  j2.init();
+  var j2strt = function() { window.j2.start();  };
+  var j2stop = function() { window.j2.stop() };
+  var j2rset = function() { window.j2.reset() };
+</script>
+
+<hr />
+
+<p>If you want to see all the stuff the <code class="highlighter-rouge">JSephus</code> loader can do, visit the <a href="docpage">documentation page</a> or the <a href="quickstart">quick-start guide</a>. Enjoy!</p>
+
+<p>If you have questions, suggestions, or problems, please report them on <a href="https://github.com/vankesteren/JSephus/issues">GitHub</a>!</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="http://github.com/vankesteren">vankesteren</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+
+
+  
+  </body>
+</html>

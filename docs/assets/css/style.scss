@@ -1,0 +1,63 @@
+---
+---
+
+@import "jekyll-theme-minimal";
+@import "https://code.cdn.mozilla.net/fonts/fira.css";
+
+body {
+  font-family: Fira Sans;
+  font-weight: 400;
+  background-color: #F8F8F8;
+}
+
+code {
+  font-family: Fira Mono;
+  font-weight: medium;
+  font-size: 1em;
+  color: #12ABAB;
+}
+
+pre {
+  font-family: Fira Mono;
+  font-weight: medium;
+  font-size: 1em;
+  color: #12ABAB;
+}
+
+a {
+  font-size: 1em;
+  color: #FF8C00;
+}
+
+a:hover {
+  font-size: 1em;
+  color: #FF8C00;
+}
+
+
+button {
+    background-color: #12ABAB;
+    border: 2px solid;
+    border-color: #12ABAB;
+    color: white;
+    padding: 5px 5px;
+    margin-left: 10px;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+}
+
+button:hover {
+  background-color: #F8F8F8;
+  color: #12ABAB;  
+}
+
+button:focus {
+  outline:0;
+}
+
+.btnGroup {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+}

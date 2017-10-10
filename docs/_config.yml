@@ -1,1 +1,5 @@
 theme: jekyll-theme-minimal
+title: JSephus
+description: A portable ES6 class for an attractive SVG loading element.
+show_downloads: false
+repository: vankesteren/JSephus
