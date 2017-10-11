@@ -102,7 +102,7 @@ class JSephus {
     return this;
   }
   
-  setProperty(property, value, init = false) {
+  setProperty(property, value) {
     // Set a single property or a range of properties
     if (typeof property === "string") {
       this[property] = value;
@@ -145,7 +145,7 @@ class JSephus {
   }
   
   // Automated countdown / countup functionality
-  async start(time = 10000, callback = function(this) {return this}) {
+  async start(time = 10000, callback = function(jsph) {return jsph}) {
     let ms = time*this.precision;
     
     this.timer = setInterval( () => {
@@ -158,7 +158,7 @@ class JSephus {
     }, ms);
   }
   
-  async reverse(time = 10000, callback = function(this) {return this}) {
+  async reverse(time = 10000, callback = function(jsph) {return jsph}) {
     let ms = time*this.precision;
     
     this.timer = setInterval( () => {
