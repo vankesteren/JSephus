@@ -114,7 +114,6 @@ class JSephus {
     this._createAngles();
     this._calcCircs();
     this._createTextElement();
-    if (init) this.init();
     return this;
   }
   
