@@ -10,28 +10,31 @@ body {
   background-color: #F8F8F8;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #474949;
+}
+
+a, a > code {
+  font-size: 1em;
+  color: #FF8C00;
+}
+
+a:hover, a > code:hover {
+  font-size: 1em;
+  color: #FF8C00;
+}
+
 code {
   font-family: Fira Mono;
-  font-weight: medium;
   font-size: 1em;
   color: #12ABAB;
 }
 
 pre {
   font-family: Fira Mono;
-  font-weight: medium;
   font-size: 1em;
-  color: #12ABAB;
-}
-
-a {
-  font-size: 1em;
-  color: #FF8C00;
-}
-
-a:hover {
-  font-size: 1em;
-  color: #FF8C00;
+  padding: 0;
+  border: none;
 }
 
 

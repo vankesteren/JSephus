@@ -215,13 +215,15 @@ footer { width: 270px; float: left; position: fixed; bottom: 50px; -webkit-font-
 @media print { body { padding: 0.4in; font-size: 12pt; color: #444; } }
 body { font-family: Fira Sans; font-weight: 400; background-color: #F8F8F8; }
 
-code { font-family: Fira Mono; font-weight: medium; font-size: 1em; color: #12ABAB; }
+h1, h2, h3, h4, h5, h6 { color: #474949; }
 
-pre { font-family: Fira Mono; font-weight: medium; font-size: 1em; color: #12ABAB; }
+a, a > code { font-size: 1em; color: #FF8C00; }
 
-a { font-size: 1em; color: #FF8C00; }
+a:hover, a > code:hover { font-size: 1em; color: #FF8C00; }
 
-a:hover { font-size: 1em; color: #FF8C00; }
+code { font-family: Fira Mono; font-size: 1em; color: #12ABAB; }
+
+pre { font-family: Fira Mono; font-size: 1em; padding: 0; border: none; }
 
 button { background-color: #12ABAB; border: 2px solid; border-color: #12ABAB; color: white; padding: 5px 5px; margin-left: 10px; border-radius: 3px; text-align: center; display: inline-block; }
 
