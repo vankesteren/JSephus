@@ -94,11 +94,12 @@ class JSephus {
     this.setProgress(1.0);
     this.hideText();
     this._draw();
-    let jsph = this
+    let jsph = this;
     setTimeout(function () {
       jsph.reset();
       if (jsph.displayText) jsph.showText();
     }, 500);
+    return this;
   }
   
   setProperty(property, value, init = false) {
@@ -114,6 +115,7 @@ class JSephus {
     this._calcCircs();
     this._createTextElement();
     if (init) this.init();
+    return this;
   }
   
   // Basic progress bar functionality
@@ -121,6 +123,7 @@ class JSephus {
     // Reset the progress bar to 0
     this.setProgress(0.0);
     if (this.displayText) this.showText();
+    return this;
   }
   
   setProgress(prop) {
@@ -128,18 +131,21 @@ class JSephus {
     this.progress = prop;
     this._updateCircs();
     this._updateText();
+    return this;
   }
   
   hideText() {
     this.textElem.style.opacity = 0.0;
+    return this;
   }
   
   showText() {
     this.textElem.style.opacity = this.textOpacity;
+    return this;
   }
   
   // Automated countdown / countup functionality
-  async start(time = 10000, callback = function() {console.log("done")}) {
+  async start(time = 10000, callback = function(this) {return this}) {
     let ms = time*this.precision;
     
     this.timer = setInterval( () => {
@@ -147,12 +153,12 @@ class JSephus {
         this.setProgress(this.progress + this.precision);
       } else {
         clearInterval(this.timer);
-        callback();
+        callback(this);
       }
     }, ms);
   }
   
-  async reverse(time = 10000, callback = function() {console.log("done")}) {
+  async reverse(time = 10000, callback = function(this) {return this}) {
     let ms = time*this.precision;
     
     this.timer = setInterval( () => {
@@ -160,14 +166,14 @@ class JSephus {
         this.setProgress(this.progress - this.precision);
       } else {
         clearInterval(this.timer);
-        callback();
+        callback(this);
       }
     }, ms);
   }
   
-  stop(callback = function() {console.log("stopped")}) {
+  stop() {
     clearInterval(this.timer);
-    callback();
+    return this;
   }
   
   // ----------------------------------
