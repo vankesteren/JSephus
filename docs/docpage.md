@@ -48,6 +48,7 @@ jsph.init();
 ```
 
 __Details__
+
 After instantiating a new JSephus object, this function initialises that object: it calculates the position of the circles, creates these elements as well as the text element and appends them to the parent SVG in the DOM. By default, this happens in a 'pretty' way: the elements fade-in in a short amount of time. Setting the argument `instant` to `false` removes this transition and instantly shows the loader.
 
 It is necessary to call `init` after setting properties using the `setProperty` method to show the changes.

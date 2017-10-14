@@ -27,6 +27,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
+    <link rel="icon" href="/assets/img/jsephus.png" type="image/png">
+    
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -128,8 +130,9 @@
 <pre><code class="language-{javascript}">jsph.init();
 </code></pre>
 
-<p><strong>Details</strong>
-After instantiating a new JSephus object, this function initialises that object: it calculates the position of the circles, creates these elements as well as the text element and appends them to the parent SVG in the DOM. By default, this happens in a ‘pretty’ way: the elements fade-in in a short amount of time. Setting the argument <code class="highlighter-rouge">instant</code> to <code class="highlighter-rouge">false</code> removes this transition and instantly shows the loader.</p>
+<p><strong>Details</strong></p>
+
+<p>After instantiating a new JSephus object, this function initialises that object: it calculates the position of the circles, creates these elements as well as the text element and appends them to the parent SVG in the DOM. By default, this happens in a ‘pretty’ way: the elements fade-in in a short amount of time. Setting the argument <code class="highlighter-rouge">instant</code> to <code class="highlighter-rouge">false</code> removes this transition and instantly shows the loader.</p>
 
 <p>It is necessary to call <code class="highlighter-rouge">init</code> after setting properties using the <code class="highlighter-rouge">setProperty</code> method to show the changes.</p>
 
