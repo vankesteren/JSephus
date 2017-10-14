@@ -19,8 +19,8 @@
 
     
     <!-- website stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=fe37f6fadc6a5eb7605896c650099b4e8867b8dc">
-    <script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/16847ef7/JSephus.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css?v=65ac7de75f6a52f5aab70a04f5cf5ff1396b11a6">
+    <script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/7fdf9127/JSephus.min.js"></script>
     
     <!--  highlight.js -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
@@ -51,7 +51,7 @@
       <section>
 
       <h1> Reference documentation </h1>
-<h2> <span id="version"> <code> v0.2.0 </code> </span> </h2>
+<h2> <span id="version"> <code> v1.0.0 </code> </span> </h2>
 <h2 id="contents"> Contents </h2>
 <ul id="markdown-toc">
   <li><a href="#constructor" id="markdown-toc-constructor">Constructor</a>    <ul>
@@ -525,6 +525,11 @@ jsph.reverse(5000, jsph =&gt; jsph.hideText());
       <td style="text-align: left"><span id="transFunction">transFunction</span></td>
       <td style="text-align: left">CSS string</td>
       <td style="text-align: left">What should the css transition-timing-function property of the transition be. Default “cubic-bezier(.59, .01, .39, .97)”.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="textTransform">textTransform</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">CSS string indicating the transform to be applied to the text element. Can be used to properly align text in case the font displays strangely, or simply to move the text to a corner, for example. Default <code class="highlighter-rouge">"translate(0px, 0px)"</code>.</td>
     </tr>
   </tbody>
 </table>

@@ -19,8 +19,8 @@
 
     
     <!-- website stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=fe37f6fadc6a5eb7605896c650099b4e8867b8dc">
-    <script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/16847ef7/JSephus.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css?v=65ac7de75f6a52f5aab70a04f5cf5ff1396b11a6">
+    <script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/7fdf9127/JSephus.min.js"></script>
     
     <!--  highlight.js -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
@@ -82,11 +82,14 @@ jsph.init();
 
 <p>The <code class="highlighter-rouge">JSephus</code> loader is very customisable. Setting some different properties is easy:</p>
 
-<pre><code class="language-{javascript}">jsph
-  .setProperty(["dist", "displayText", "radius", 
-                "alpha", "disappear", "transDist"], 
-               [90, false, 30, 0.3, false, 90])
-  .init();
+<pre><code class="language-{javascript}">jsph.setProperty({
+  "dist": 90, 
+  "displayText": false, 
+  "radius": 30,
+  "alpha": 0.3, 
+  "disappear": false, 
+  "transDist": 90
+}).init();
 </code></pre>
 
 <p>And the result will look very different:</p>

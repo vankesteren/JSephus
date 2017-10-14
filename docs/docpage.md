@@ -4,7 +4,7 @@ title: Documentation
 ---
 
 <h1> Reference documentation </h1>
-<h2> <span id = "version"> <code> v0.2.0 </code> </span> </h2>  
+<h2> <span id = "version"> <code> v1.0.0 </code> </span> </h2>  
 <h2 id="contents"> Contents </h2>
 * TOC
 {:toc}
@@ -309,5 +309,6 @@ These are the properties that can be changed through the [setProperty](#setprope
 | <span id="transDist">transDist</span> | number | How far the circles should travel outward when they are "killed". Default `dist * 1/5`. |
 | <span id="transDuration">transDuration</span> | CSS string | String indicating how long it should take a "killed" element to move and / or disappear. Default `"0.4s"`|
 | <span id="transFunction">transFunction</span> | CSS string | What should the css transition-timing-function property of the transition be. Default "cubic-bezier(.59, .01, .39, .97)". |
+| <span id="textTransform">textTransform</span> | CSS string | CSS string indicating the transform to be applied to the text element. Can be used to properly align text in case the font displays strangely, or simply to move the text to a corner, for example. Default `"translate(0px, 0px)"`. |
 
 <br><br>

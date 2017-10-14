@@ -11,7 +11,7 @@ Besides downloading the minified or standard library from the [releases](http://
 add the following to the `<head>` in your `html`:
 
 ```{html}
-<script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/16847ef7/JSephus.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/7fdf9127/JSephus.min.js"></script>
 ``` 
 
 ## The parent element
