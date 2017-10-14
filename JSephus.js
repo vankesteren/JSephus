@@ -68,6 +68,24 @@ class JSephus {
     this.transDuration = "0.4s"; // String (css)
     this.transFunction = "cubic-bezier(.59, .01, .39, .97)"; // String (css)
     
+    // create a dictionary of these settable properties for setProperty()
+    this.settable = {
+      "n": typeof this.n,
+      "colour": typeof this.colour,
+      "alpha": typeof this.alpha,
+      "dist": typeof this.dist,
+      "radius": typeof this.radius,
+      "precision": typeof this.precision,
+      "displayText": typeof this.displayText,
+      "fontSize": typeof this.fontSize,
+      "fontFamily": typeof this.fontFamily,
+      "textOpacity": typeof this.textOpacity,
+      "textColour": typeof this.textColour,
+      "disappear": typeof this.disappear,
+      "transDist": typeof this.transDist,
+      "transDuration": typeof this.transDuration,
+      "transFunction": typeof this.transFunction
+    }
     // -----------------------
     // END SETTABLE PROPERTIES
     // -----------------------
@@ -89,30 +107,97 @@ class JSephus {
   // ------------------------------
   // Interaction (public) functions
   // ------------------------------
-  init() {
+  init(instant = false) {
     // Initialise the progress bar
-    this.setProgress(1.0);
-    this.hideText();
+    if (!instant) {
+      this.setProgress(1.0);
+      this.hideText();
+    }
     this._draw();
-    let jsph = this;
-    setTimeout(function () {
-      jsph.reset();
-      if (jsph.displayText) jsph.showText();
-    }, 500);
+    if (!instant) {
+      let jsph = this;
+      setTimeout(function () {
+        jsph.reset();
+        if (jsph.displayText) jsph.showText();
+      }, 500);
+    }
     return this;
   }
   
   setProperty(property, value) {
     // Set a single property or a range of properties
     if (typeof property === "string") {
-      this[property] = value;
-    } else if (property.constructor === Array && value.constructor === Array) {
-      for (var i = 0; i < property.length; i++) {
-        this[property[i]] = value[i];
+      
+      if (Object.keys(this.settable).indexOf(property) == -1) {
+        throw new Error("Property '" + property + "' not settable!");
+      } else if (typeof value != this.settable[property]) {
+        throw new TypeError("Expected type '" + this.settable[property] + 
+                            "', not '" + typeof value + "'");
+      } else {
+        this[property] = value;
       }
+      
+    } else if (property.constructor === Array && value.constructor === Array) {
+      
+      let inSettable = property.map(a => Object.keys(this.settable).indexOf(a));
+      if (inSettable.some(v => v < 0)) {
+        let errprops = property[this._getAllIndices(inSettable, -1)];
+        throw new Error("Prop(s) '" + errprops.toString() + "' not settable!");
+      } else {
+        var typeErrs = []
+        for (var i = 0; i < property.length; i++) {
+          if (typeof value[i] != this.settable[property[i]]) {
+            typeErrs.push(new TypeError(
+              "Property: '" + property[i] + "', Expected type '" + 
+              this.settable[property[i]] + "', not '" + typeof value + "'"
+            ));
+          }
+        }
+        if (typeErrs.length == 1) {
+          throw typeErrs[0];
+        } else if (typeErrs.length > 1) {
+          typeErrs.map(a => {console.log(a)});
+          throw new TypeError("Type errors found - see console.");
+        } else {
+          for (var i = 0; i < property.length; i++) {
+            this[property[i]] = value[i];
+          }
+        }
+      }
+      
+    } else if (property.constructor === Object) {
+      
+      let k = Object.keys(property);
+      let inSettable = k.map(a => Object.keys(this.settable).indexOf(a));
+      if (inSettable.some(v => v < 0)) {
+        let errprops = k[this._getAllIndices(inSettable, -1)];
+        throw new Error("Prop(s) '" + errprops.toString() + "' not settable!");
+      } else {
+        var typeErrs = []
+        for (var key in property) {
+          if (typeof property[key] != this.settable[key]) {
+            typeErrs.push(new TypeError(
+              "Property: '" + key + "', Expected type '" + 
+              this.settable[key] + "', not '" + typeof property[key] + "'"
+            ));
+          }
+        }
+        if (typeErrs.length == 1) {
+          throw typeErrs[0];
+        } else if (typeErrs.length > 1) {
+          typeErrs.map(a => {console.log(a)});
+          throw new TypeError("Type errors found - see console.");
+        } else {
+          for (var key in property) {
+            this[key] = property[key];
+          }
+        }
+      }
+      
     }
-    this._createAngles();
+    this.angles = this._createAngles(this.n);
     this._calcCircs();
+    this.josephusInd = this._calcJosephus();
     this._createTextElement();
     return this;
   }
@@ -146,7 +231,7 @@ class JSephus {
   // Automated countdown / countup functionality
   async start(time = 10000, callback = function(jsph) {return jsph}) {
     let ms = time*this.precision;
-    
+    clearInterval(this.timer);
     this.timer = setInterval( () => {
       if (this.progress < 1) {
         this.setProgress(this.progress + this.precision);
@@ -159,7 +244,7 @@ class JSephus {
   
   async reverse(time = 10000, callback = function(jsph) {return jsph}) {
     let ms = time*this.precision;
-    
+    clearInterval(this.timer);
     this.timer = setInterval( () => {
       if (this.progress > 0) {
         this.setProgress(this.progress - this.precision);
@@ -335,5 +420,14 @@ class JSephus {
     this.text = Math.round(this.progress*100);
     this.textElem.textContent = this.text.toString();
   }
+  
+  _getAllIndices(arr, val) {
+    let idx = [];
+    for(var i = 0; i < arr.length; i++){
+      if (arr[i] === val) idx.push(i);
+    }
+    return idx;
+  }
+
   
 }
