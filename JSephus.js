@@ -60,7 +60,8 @@ class JSephus {
     this.fontSize = "60"; // font size in pts
     this.fontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif';
     this.textOpacity = "1.0"; // 0.0 - 1.0
-    this.textColour = "rgb(60, 150, 120)" // String (css)
+    this.textColour = "rgb(60, 150, 120)"; // String (css)
+    this.textTransform = "translate(0px, 0px)";
     
     // Transition properties
     this.disappear = true; // Bool
@@ -84,7 +85,8 @@ class JSephus {
       "disappear": typeof this.disappear,
       "transDist": typeof this.transDist,
       "transDuration": typeof this.transDuration,
-      "transFunction": typeof this.transFunction
+      "transFunction": typeof this.transFunction,
+      "textTransform": typeof this.textTransform
     }
     // -----------------------
     // END SETTABLE PROPERTIES
@@ -364,9 +366,11 @@ class JSephus {
     textElem.setAttributeNS(null,"x", this.midPoint[0]);
     textElem.setAttributeNS(null,"y", this.midPoint[1]);
     textElem.setAttributeNS(null, "text-anchor", "middle");
-    textElem.setAttributeNS(null, "alignment-baseline", "middle");
-    // IE fix? textElem.setAttributeNS(null, "dy", ".4em");
-    
+    textElem.setAttributeNS(null, "dominant-baseline", "central");
+    // IE/Edge fix for lack of support for dominant-baseline property :'(
+    if (this._detectIE() != false) {
+      textElem.setAttributeNS(null, "dy", "0.35em"); // approximation
+    }
     
     textElem.setAttributeNS(null,"font-size", this.fontSize);
     textElem.setAttributeNS(null,"font-family", this.fontFamily);
@@ -376,6 +380,7 @@ class JSephus {
     textElem.style.transitionProperty = "all";
     textElem.style.transitionDuration = this.transDuration;
     textElem.style.transitionTimingFunction = this.transFunction;
+    textElem.style.transform = this.textTransform;
     
     var textNode = document.createTextNode(this.text.toString());
     textElem.appendChild(textNode);
@@ -429,5 +434,29 @@ class JSephus {
     return idx;
   }
 
+  _detectIE() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+      // IE 10 or older => return version number
+      return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+      // IE 11 => return version number
+      var rv = ua.indexOf('rv:');
+      return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+      // Edge (IE 12+) => return version number
+      return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // other browser
+    return false;
+  }
   
 }
