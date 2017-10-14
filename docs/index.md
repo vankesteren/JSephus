@@ -68,4 +68,7 @@ And the result will look very different:
 
 If you want to see all the stuff the `JSephus` loader can do, visit the [documentation page](docpage) or the [quick-start guide](quickstart). Enjoy!
 
-If you have questions, suggestions, or problems, please report them on [GitHub](https://github.com/vankesteren/JSephus/issues)!
+<br><br>
+
+## Issues, suggestions, questions
+If you have questions, suggestions, or problems, please report them on [GitHub](https://github.com/vankesteren/JSephus/issues).

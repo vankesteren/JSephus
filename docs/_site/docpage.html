@@ -19,8 +19,8 @@
 
     
     <!-- website stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=244ebad08277d276a37fa316e5d458e24d73c7ee">
-    <script type="text/javascript" src="//cdn.rawgit.com/vankesteren/JSephus/1e17d5a6/JSephus.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css?v=fe37f6fadc6a5eb7605896c650099b4e8867b8dc">
+    <script type="text/javascript" src="/assets/js/JSephus.min.js"></script>
     
     <!--  highlight.js -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
@@ -50,7 +50,486 @@
       </header>
       <section>
 
-      <h1 id="reference-documentation">Reference documentation</h1>
+      <h1> Reference documentation </h1>
+<h2> <span id="version"> <code> v0.2.0 </code> </span> </h2>
+<h2 id="contents"> Contents </h2>
+<ul id="markdown-toc">
+  <li><a href="#constructor" id="markdown-toc-constructor">Constructor</a>    <ul>
+      <li><a href="#new-jsephus" id="markdown-toc-new-jsephus"><code class="highlighter-rouge">new JSephus</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#methods" id="markdown-toc-methods">Methods</a>    <ul>
+      <li><a href="#init" id="markdown-toc-init"><code class="highlighter-rouge">init</code></a></li>
+      <li><a href="#setproperty" id="markdown-toc-setproperty"><code class="highlighter-rouge">setProperty</code></a></li>
+      <li><a href="#setprogress" id="markdown-toc-setprogress"><code class="highlighter-rouge">setProgress</code></a></li>
+      <li><a href="#reset" id="markdown-toc-reset"><code class="highlighter-rouge">reset</code></a></li>
+      <li><a href="#start" id="markdown-toc-start"><code class="highlighter-rouge">start</code></a></li>
+      <li><a href="#reverse" id="markdown-toc-reverse"><code class="highlighter-rouge">reverse</code></a></li>
+      <li><a href="#stop" id="markdown-toc-stop"><code class="highlighter-rouge">stop</code></a></li>
+      <li><a href="#hidetext" id="markdown-toc-hidetext"><code class="highlighter-rouge">hideText</code></a></li>
+      <li><a href="#showtext" id="markdown-toc-showtext"><code class="highlighter-rouge">showText</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#static-methods" id="markdown-toc-static-methods">Static methods</a>    <ul>
+      <li><a href="#createsvg" id="markdown-toc-createsvg"><code class="highlighter-rouge">createSVG</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#properties" id="markdown-toc-properties">Properties</a></li>
+</ul>
+
+<hr />
+
+<h2 id="constructor">Constructor</h2>
+<h3 id="new-jsephus"><code class="highlighter-rouge">new JSephus</code></h3>
+<p>To instantiate a new class, use the ES6 syntax <code class="highlighter-rouge">new JSephus()</code>. The constructor has two arguments:</p>
+<ul>
+  <li><code class="highlighter-rouge">parentsvgId</code>: the name or DOM element of the parent SVG.</li>
+  <li><code class="highlighter-rouge">n</code>: the number of circles to draw.</li>
+</ul>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">var jsph = new JSephus("jsph-svg", 41);
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#createsvg">createSVG</a>, <a href="#init">init</a>, <a href="#n">n</a></p>
+
+<p><br /><br /></p>
+
+<h2 id="methods">Methods</h2>
+<h3 id="init"><code class="highlighter-rouge">init</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Draw a <code class="highlighter-rouge">JSephus</code> object in the parent SVG element.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">instant</td>
+      <td style="text-align: left">boolean</td>
+      <td style="text-align: left">Whether to fade-in or instantly show the loader. Default <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.init();
+</code></pre>
+
+<p><strong>Details</strong>
+After instantiating a new JSephus object, this function initialises that object: it calculates the position of the circles, creates these elements as well as the text element and appends them to the parent SVG in the DOM. By default, this happens in a ‘pretty’ way: the elements fade-in in a short amount of time. Setting the argument <code class="highlighter-rouge">instant</code> to <code class="highlighter-rouge">false</code> removes this transition and instantly shows the loader.</p>
+
+<p>It is necessary to call <code class="highlighter-rouge">init</code> after setting properties using the <code class="highlighter-rouge">setProperty</code> method to show the changes.</p>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#createsvg">createSVG</a>, <a href="#setproperty">setProperty</a>, <a href="#setprogress">setProgress</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="setproperty"><code class="highlighter-rouge">setProperty</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Styling the loader by changing the display properties of the <code class="highlighter-rouge">JSephus</code> object.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">property</td>
+      <td style="text-align: left">string, array, object</td>
+      <td style="text-align: left">In case of string or array: the name(s) of the properties to change. In this case it also needs a value argument. Otherwise: a JSON object with as keys the names of the properties to set and as values the desired values of these properties.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">value</td>
+      <td style="text-align: left">value, array, null</td>
+      <td style="text-align: left">Which value to change the corresponding property to. Its type depends on the selected <a href="#properties">property</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.setProperty("radius", 15);
+
+jsph.setProperty(["radius", "dist"], [15, 100]);
+
+jsph.setProperty({
+  "alpha": 0.1,
+  "fontSize": "50",
+  "textOpacity": "0.5"
+});
+
+// chaining setProperty &amp; init
+jsph.setProperty("radius", 15).init();
+</code></pre>
+
+<p><strong>Details</strong></p>
+
+<p>This is the workhorse <code class="highlighter-rouge">JSephus</code> styling method. In order to know which properties can be set, see <a href="#properties">Properties</a>. In case of erroneous input, this function returns informative errors, so don’t be afraid to play around!</p>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#properties">Properties</a>, <a href="#init">init</a>, <a href="#setprogress">setProgress</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="setprogress"><code class="highlighter-rouge">setProgress</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Set the progress value of the loader element. This function updates the loader to the new state.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">proportion</td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">The progress proportion to set the <code class="highlighter-rouge">JSephus</code> loader at. This number needs to be between 0 and 1.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.setProgress(0.5);
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#init">init</a>, <a href="#reset">reset</a>, <a href="#start">start</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="reset"><code class="highlighter-rouge">reset</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Set the progress value of the loader element to 0. If text is hidden but property <code class="highlighter-rouge">displayText</code> is <code class="highlighter-rouge">true</code>, also show the text element.</p>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.reset();
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#init">init</a>, <a href="#setprogress">setProgress</a>, <a href="#start">start</a>, <a href="#hidetext">hideText</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="start"><code class="highlighter-rouge">start</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Animate the progress until 100% in a given amount of time.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">time</td>
+      <td style="text-align: left">integer</td>
+      <td style="text-align: left">The time in milliseconds that it should take the loader to animate from 0% to 100%. Default <code class="highlighter-rouge">10000</code> (10 seconds)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">callback</td>
+      <td style="text-align: left">function</td>
+      <td style="text-align: left">Function to call after the progress has reached 100%. The argument of this function is the JSephus element.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">// run for 10 seconds
+jsph.start();
+
+// run for 5 seconds, hide text after done
+jsph.start(5000, jsph =&gt; jsph.hideText());
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#init">init</a>, <a href="#reset">reset</a>, <a href="#reverse">reverse</a>, <a href="#hidetext">hideText</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="reverse"><code class="highlighter-rouge">reverse</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Animate the progress down to 0% in a given amount of time.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">time</td>
+      <td style="text-align: left">integer</td>
+      <td style="text-align: left">The time in milliseconds that it should take the loader to animate from 100% to 0%. Default <code class="highlighter-rouge">10000</code> (10 seconds)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">callback</td>
+      <td style="text-align: left">function</td>
+      <td style="text-align: left">Function to call after the progress has reached 0%. The argument of this function is the JSephus element.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">// run for 10 seconds
+jsph.reverse();
+
+// run for 5 seconds, hide text after done
+jsph.reverse(5000, jsph =&gt; jsph.hideText());
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#init">init</a>, <a href="#reset">reset</a>, <a href="#start">start</a>, <a href="#hidetext">hideText</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="stop"><code class="highlighter-rouge">stop</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Stops the animation initiated by <a href="#start">start</a> or <a href="#reverse">reverse</a>.</p>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.stop();
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#start">start</a>, <a href="#reverse">reverse</a>, <a href="#reset">reset</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="hidetext"><code class="highlighter-rouge">hideText</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Hide the text element (by setting its opacity to 0).</p>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.hideText();
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#showtext">showText</a>, <a href="#reset">reset</a>, <a href="#displayText">displayText</a>, <a href="#textOpacity">textOpacity</a>, <a href="#textColour">textColour</a></p>
+
+<p><br /><br /></p>
+
+<h3 id="showtext"><code class="highlighter-rouge">showText</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Show the text element (by setting its opacity to <a href="#textOpacity">textOpacity</a>), even when <a href="#displayText">displayText</a> is set to <code class="highlighter-rouge">false</code>.</p>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">jsph.showText();
+</code></pre>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#showtext">showText</a>, <a href="#reset">reset</a>, <a href="#displayText">displayText</a>, <a href="#textOpacity">textOpacity</a>, <a href="#textColour">textColour</a></p>
+
+<p><br /><br /></p>
+
+<h2 id="static-methods">Static methods</h2>
+<p>Static methods do not require an instance of the JSephus class. They can be called as elements of the class specification: <code class="highlighter-rouge">JSephus.method()</code>.</p>
+
+<h3 id="createsvg"><code class="highlighter-rouge">createSVG</code></h3>
+<p><strong>Summary</strong></p>
+
+<p>Creates a proper <code class="highlighter-rouge">SVG</code> element for <code class="highlighter-rouge">JSephus</code> and appends it to the window DOM.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Argument</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">parentId</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">The parent <code class="highlighter-rouge">&lt;div&gt;</code> of the <code class="highlighter-rouge">&lt;svg&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">svgId</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">The id of the new <code class="highlighter-rouge">&lt;svg&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">viewBoxWidth</td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">The width of the internal coordinate system</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">viewBoxHeight</td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">The height of the internal coordinate system</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Usage</strong></p>
+
+<pre><code class="language-{javascript}">JSephus.createSVG("parentDiv", "jsph-svg", 512, 512);
+</code></pre>
+
+<p><strong>Details</strong></p>
+
+<p>JSephus uses the viewBox of the SVG element to calculate the midpoint, distances, translation distances, and radii of its circles. I recommend setting the margins or the padding of the parent div to resize the loading element, not to change any properties of the SVG itself. Of course, if you are an SVG pro, feel free to play around with viewBoxes and such.</p>
+
+<p><strong>See also</strong></p>
+
+<p><a href="#init">init</a>, <a href="#setproperty">setProperty</a>, <a href="#dist">dist</a>, <a href="#radius">radius</a>, <a href="#transDist">transDist</a></p>
+
+<p><br /><br /></p>
+
+<h2 id="properties">Properties</h2>
+
+<p>These are the properties that can be changed through the <a href="#setproperty">setProperty</a> method.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">type</th>
+      <th style="text-align: left">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><span id="n">n</span></td>
+      <td style="text-align: left">integer</td>
+      <td style="text-align: left">The number of circles in the loading element. No default (set by the <a href="#new-jsephus">constructor</a>).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="colour">colour</span></td>
+      <td style="text-align: left">boolean</td>
+      <td style="text-align: left">Whether the elements have colour or grayscale. Default <code class="highlighter-rouge">true</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="alpha">alpha</span></td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">Number between 0 and 1 that indicates the opacity of the circles. 0 indicates fully transparent. Default <code class="highlighter-rouge">1</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="dist">dist</span></td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">Distance of the circles from the midpoint, expressed in terms of svg coordinate units set by the viewBox in the <a href="#constructor">constructor</a>. Default 2/3rds the shortest distance from the middle to the edge of the box.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="radius">radius</span></td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">Radius of the circles themselves. Default <code class="highlighter-rouge">10</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="precision">precision</span></td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">Precision (step size) of the animation started by <a href="#start">start</a> or <a href="#reverse">reverse</a>. Has to be larger than 0, smaller than 1. Default <code class="highlighter-rouge">0.001</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="displayText">displayText</span></td>
+      <td style="text-align: left">boolean</td>
+      <td style="text-align: left">Whether to show the animated text in the middle of the loader. Default <code class="highlighter-rouge">true</code>. Override through <a href="#showtext">showText</a> or <a href="#hidetext">hideText</a> possible.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="fontSize">fontSize</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">Font size of the text element. This accepts CSS strings so it is possible to use relative units such as “1rem”. Default <code class="highlighter-rouge">60</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="fontFamily">fontFamily</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">The font family of the text element. Default <code class="highlighter-rouge">system font</code> stack.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="textOpacity">textOpacity</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">String of a number between 0 and 1 that indicates the opacity of the text element. “0” indicates fully transparent. Default <code class="highlighter-rouge">"1.0"</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="textColour">textColour</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">Colour of the text. Default <code class="highlighter-rouge">"rgb(60, 150, 120)"</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="disappear">disappear</span></td>
+      <td style="text-align: left">boolean</td>
+      <td style="text-align: left">Whether the circles should disappear when they are “killed”. Default <code class="highlighter-rouge">true</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="transDist">transDist</span></td>
+      <td style="text-align: left">number</td>
+      <td style="text-align: left">How far the circles should travel outward when they are “killed”. Default <code class="highlighter-rouge">dist * 1/5</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="transDuration">transDuration</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">String indicating how long it should take a “killed” element to move and / or disappear. Default <code class="highlighter-rouge">"0.4s"</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span id="transFunction">transFunction</span></td>
+      <td style="text-align: left">CSS string</td>
+      <td style="text-align: left">What should the css transition-timing-function property of the transition be. Default “cubic-bezier(.59, .01, .39, .97)”.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /><br /></p>
 
 
       </section>
