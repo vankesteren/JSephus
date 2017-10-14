@@ -36,11 +36,14 @@ jsph.init();
 The `JSephus` loader is very customisable. Setting some different properties is easy:
 
 ```{javascript}
-jsph
-  .setProperty(["dist", "displayText", "radius", 
-                "alpha", "disappear", "transDist"], 
-               [90, false, 30, 0.3, false, 90])
-  .init();
+jsph.setProperty({
+  "dist": 90, 
+  "displayText": false, 
+  "radius": 30,
+  "alpha": 0.3, 
+  "disappear": false, 
+  "transDist": 90
+}).init();
 ```
 
 And the result will look very different:
