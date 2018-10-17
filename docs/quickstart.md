@@ -7,11 +7,11 @@ title: Quick-start
 Here's how to quickly get up and running with a `JSephus` element on your webpage.
 
 ## Loading the library
-Besides downloading the minified or standard library from the [releases](http://github.com/vankesteren/JSephus/releases/latest) and serving it yourself, you can also make use of the [RawGit CDN](https://rawgit.com/). For this,
+Besides downloading the minified or standard library from the [releases](http://github.com/vankesteren/JSephus/releases/latest) and serving it yourself, you can also make use of the [jsDelivr CDN](https://www.jsdelivr.com/). For this,
 add the following to the `<head>` in your `html`:
 
 ```{html}
-<script type="text/javascript" src="https://cdn.rawgit.com/vankesteren/JSephus/7fdf9127/JSephus.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/vankesteren/JSephus/JSephus.min.js"></script>
 ``` 
 
 ## The parent element
